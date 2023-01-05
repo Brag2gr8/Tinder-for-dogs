@@ -5,20 +5,26 @@ let dogIndex = 0;
 let nowDog = new Dog(dogs[dogIndex]);
 
 const liked = () => {
-    nowDog.setStatus(true)
-    setBadge();
-    setTimeout(() => getNewDog(), 2000);
+    if(!nowDog.hasBeenSwiped) {
+        nowDog.setStatus(true)
+        setBadge();
+        setTimeout(() => getNewDog(), 2000);
+    }
+    
 }
 
 const rejected = () => {
-    nowDog.setStatus(false)
-    setBadge();
-    setTimeout(() => getNewDog(), 2000);
+    if(!nowDog.hasBeenSwiped) {
+        nowDog.setStatus(false)
+        setBadge();
+        setTimeout(() => getNewDog(), 2000);
+    }
+    
 }
 
 const getNewDog = () => {
     dogIndex++;
-   if(dogIndex === 3) {dogIndex = 0}
+    dogIndex === 3 ? dogIndex = 0 : false;
     nowDog = new Dog(dogs[dogIndex]);
     render();
     
